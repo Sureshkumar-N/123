@@ -14,8 +14,10 @@ function App() {
   return (
     <div className="app">
       <div className='field'>
-        <input ref={inputRef} placeholder='enter your task'/>
-        <button onClick={()=>{addTask(inputRef.current.value)}}>Add</button>
+        <div className='input-field'>
+          <input ref={inputRef} placeholder='enter your task'/>
+          <button onClick={()=>{addTask(inputRef.current.value)}}>Add</button>
+        </div>
       </div>
       <div className='tasks'>
         <List/>
