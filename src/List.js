@@ -17,7 +17,12 @@ export default function List(){
             payload:id
         });
     }
-    
+    const complete=(id)=>{
+        dispatch({
+            type:"COMP",
+            payload:id
+        });
+    }
     return(
         <div className="list">
                 {
@@ -27,6 +32,7 @@ export default function List(){
                                 <span>Task: {task.name}</span>
                                 <span>Day: {task.date}</span>
                                 <span>Time: {task.time}</span>
+                                <img src={Tick}  alt="click" onClick={()=>complete(i)}/>
                             </div>
                         );
                     })

@@ -31,3 +31,10 @@
     padding: 10px 10px;
     border-radius: 10px;
 }
+.task>img{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -70px;
+    left: 180px;
+}
