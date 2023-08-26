@@ -22,19 +22,27 @@
 .input-field>button{
     border: transparent;
 }
+.list{
+    display: flex;
+    flex-wrap: wrap;
+}
 .task{
     width: 200px;
-    height: 50px;
+    height: 100px;
     border: 2px solid black;
     display: flex;
     flex-direction: column;
     padding: 10px 10px;
     border-radius: 10px;
+    margin: 10px 10px;
 }
 .task>img{
     width: 20px;
     height: 20px;
     position: relative;
-    top: -70px;
+    top: -95px;
     left: 180px;
+}
+.task>span{
+    padding: 2px  0px;
 }

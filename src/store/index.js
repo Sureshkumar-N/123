@@ -3,17 +3,54 @@ import { createStore } from "redux";
 function reducer(state={tasks:[],complete:[]}, action){
     switch (action.type) {
         case "ADD":
-            return {tasks:[...state.tasks,{name:action.payload,status:"ToDo",date:new Date().toDateString(),time:new Date().toTimeString().substring(0,8)}]};
+           return {
+            ...state,
+            tasks: [
+                ...state.tasks,
+                {
+                    name: action.payload,
+                    status: "ToDo",
+                    date: new Date().toDateString(),
+                    time: new Date().toTimeString().substring(0, 8)
+                }
+            ]
+        };
         case "DEL":
-            return {tasks:[...state.tasks.slice(0,action.payload),...state.tasks.slice(action.payload+1)]};
+           return {
+            ...state,
+            tasks:[
+                ...state.tasks.slice(0,action.payload),...state.tasks.slice(action.payload+1)
+            ]
+           };
         case "EDIT":
-            const updateTask=[...state.tasks];
-            updateTask[action.payload].status="In Progress";
-            return {tasks:updateTask};
+            return {
+                ...state,
+                tasks:state.tasks.map((task,i)=>{
+                    if(i===action.payload) {
+                        return {
+                            ...task,
+                            status:"Inprogress"
+                        };
+                    }
+                    return task;
+                })
+            }
         case "COMP":
-            const newComplete=[...state.complete,state.tasks[action.payload]];
-            const newTasks=[...state.tasks.slice(0,action.payload),...state.tasks.slice(action.payload+1)];
-            return {tasks:newTasks,complete:newComplete};
+            return {
+                ...state,
+                complete:[
+                    ...state.complete,
+                    {
+                        name:state.tasks[action.payload].name,
+                        status:"Completed",
+                        date: new Date().toDateString(),
+                        time: new Date().toTimeString().substring(0, 8)
+                    }
+                ],
+                tasks:[
+                    ...state.tasks.slice(0,action.payload),...state.tasks.slice(action.payload+1)
+                ]
+            };
         default:
             return state;
     }
